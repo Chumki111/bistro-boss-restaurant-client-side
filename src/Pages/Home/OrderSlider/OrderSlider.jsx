@@ -16,8 +16,8 @@ const OrderSlider = () => {
         <section className="mt-12 mb-12">
              <div>
                 <SectionTitle 
-                subHeading={'---From 11:00am to 10:00pm---'}
-                heading={'ORDER ONLINE'}></SectionTitle>
+                subHeading='---From 11:00am to 10:00pm---'
+                heading='ORDER ONLINE'></SectionTitle>
              </div>
 
             <div className='px-2 md:px-8 lg:px-14'>

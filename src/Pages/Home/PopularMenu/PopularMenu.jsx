@@ -24,7 +24,7 @@ const PopularMenu = () => {
            
 
            <div className='px-2 md:px-8 lg:px-14'>
-                <div>
+                <div className="grid grid-cols-1  md:grid-cols-2 gap-4 my-10">
                     {
                         menus?.map(menu => <MenuItem menu={menu} key={menu._id}></MenuItem>)
                     }
