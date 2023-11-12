@@ -14,6 +14,23 @@ const Navbar = () => {
   Home
 </NavLink></li>
     
+    <li><NavLink
+  to="/ourMenu"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "active" : ""
+  }
+>
+  Our Menu
+</NavLink></li>
+    <li><NavLink
+  to="/ourShop/salad"
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "active" : ""
+  }
+>
+  Our Shop
+</NavLink></li>
+    
     
     
     </>

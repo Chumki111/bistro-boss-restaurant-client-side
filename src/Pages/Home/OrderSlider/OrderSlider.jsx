@@ -1,8 +1,9 @@
 // import{ useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination,FreeMode} from 'swiper/modules';
 import './styles.css';
 import img1 from '../../../assets/home/slide1.jpg';
 import img2 from '../../../assets/home/slide2.jpg';
@@ -23,12 +24,14 @@ const OrderSlider = () => {
             <div className='px-2 md:px-8 lg:px-14'>
             <Swiper
         slidesPerView={4}
+        initialSlide={2}
+        freeMode={true}
         spaceBetween={30}
         centeredSlides={true}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
+        modules={[FreeMode,Pagination]}
         className="mySwiper"
       >
         <SwiperSlide>
