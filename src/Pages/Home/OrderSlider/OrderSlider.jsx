@@ -28,8 +28,9 @@ const OrderSlider = () => {
         freeMode={true}
         spaceBetween={30}
         centeredSlides={true}
-        pagination={{
+        pagination= {{
           clickable: true,
+          
         }}
         modules={[FreeMode,Pagination]}
         className="mySwiper"

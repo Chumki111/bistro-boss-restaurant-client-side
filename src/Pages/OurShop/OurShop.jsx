@@ -15,7 +15,7 @@ const OurShop = () => {
     const [tabIndex, setTabIndex] = useState(initialIndex);
     const [menus] = useMenu();
 
-    console.log(category);
+    
     const drinkItems = menus.filter(item => item.category === 'drinks');
     const dessertItems = menus.filter(item => item.category === 'dessert');
     const pizzaItems = menus.filter(item => item.category === 'pizza');
