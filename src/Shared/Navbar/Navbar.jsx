@@ -19,7 +19,7 @@ const Navbar = () => {
     }
   })
 
-  
+
   const handleLogOut = () => {
     logOut()
       .then(() => { })
@@ -41,6 +41,7 @@ const Navbar = () => {
     >
       Our Menu
     </NavLink>
+
     <NavLink
       to="/ourShop/salad"
       className="nav"
@@ -55,12 +56,13 @@ const Navbar = () => {
       Secret
     </NavLink>
 
+
     <NavLink
-      to="/"
+      to="dashboardUser"
       className="nav"
     >
       <button className="flex">
-      <FaShoppingCart className="text-2xl" />
+        <FaShoppingCart className="text-2xl" />
         <div className="badge border-none mb-2">{cart.length}</div>
       </button>
     </NavLink>
@@ -107,6 +109,17 @@ const Navbar = () => {
               </Link>
             </>
           }
+
+          {!user && (
+
+
+            <div className="avatar mx-5">
+              <div className="w-10 rounded-full cursor-pointer">
+                <img src='https://i.ibb.co/rpdcRzH/businessman-working-laptop-computer-office-3d-character-isolated-white-background-40876-3756.jpg' />
+              </div>
+            </div>
+
+          )}
         </div>
       </div>
     </div>
