@@ -1,65 +1,102 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+
+import './Navbar.css'
 
 
 const Navbar = () => {
 
-    const navLinks = <>
-    
-    <li><NavLink
-  to="/"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "active" : ""
+  document.addEventListener('scroll', () => {
+    const header = document.querySelector('.navbar');
+    if (window.scrollY > 0) {
+      header.classList.add('scrolled')
+
+    } else {
+      header.classList.remove('scrolled')
+    }
+  })
+
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => { })
+      .catch(error => console.log(error))
   }
->
-  Home
-</NavLink></li>
-    
-    <li><NavLink
-  to="/ourMenu"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "active" : ""
-  }
->
-  Our Menu
-</NavLink></li>
-    <li><NavLink
-  to="/ourShop/salad"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "active" : ""
-  }
->
-  Our Shop
-</NavLink></li>
-    
-    
-    
-    </>
-    return (
-        <div>
-            <div className="navbar fixed rounded-md max-w-screen-xl z-10 bg-opacity-30 bg-[#15151580] text-white">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <label tabIndex={0} className="navbar-end lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52">
-                            
-                           {navLinks}
-                        </ul>
-                    </div>
-                    <a className="font-bold text-2xl px-3">BISTRO BOSS <br />Restaurant</a>
-                </div>
-                <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal px-3">
-                        {navLinks}
-                    </ul>
-                </div>
-               <Link to='/login'> <div className="">
-                    <a className="cursor-pointer">Login</a>
-                </div></Link>
-            </div>
+
+  const navLinks = <>
+
+    <NavLink
+      to="/"
+      className="nav"
+    >
+      Home
+    </NavLink>
+
+    <NavLink
+      to="/ourMenu"
+      className="nav"
+    >
+      Our Menu
+    </NavLink>
+    <NavLink
+      to="/ourShop/salad"
+      className="nav"
+    >
+      Our Shop
+    </NavLink>
+    <NavLink
+      to="/secret"
+      className="nav"
+    >
+      Secret
+    </NavLink>
+
+
+
+  </>
+  return (
+    <div>
+      <div className="navbar scrolled rounded-md max-w-screen-xl  text-white">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="navbar-end lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-md dropdown-content mt-3 z-[1] p-2  w-52">
+
+              {navLinks}
+            </ul>
+          </div>
+          <a className="font-bold text-2xl px-3">BISTRO BOSS <br />Restaurant</a>
         </div>
-    );
+        <div className="navbar-end  hidden lg:flex">
+          <ul className="menu menu-horizontal px-3">
+            {navLinks}
+          </ul>
+        </div>
+        <div className="">
+          {
+            user ? <>
+
+              <button onClick={handleLogOut} className="cursor-pointer">LogOut</button>
+              <div className="avatar  mx-5">
+                <div className="w-10 rounded-full cursor-pointer">
+                  <img src={user?.photoURL} />
+                </div>
+              </div>
+            </> : <>
+
+
+              <Link to='/login'>
+                <button className="cursor-pointer">Login</button>
+              </Link>
+            </>
+          }
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;

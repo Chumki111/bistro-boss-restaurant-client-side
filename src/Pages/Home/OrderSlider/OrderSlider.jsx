@@ -38,32 +38,32 @@ const OrderSlider = () => {
         <SwiperSlide>
             <div>
                 <img src={img1} alt="" />
-                <h3 className="text-3xl uppercase -mt-16 text-center text-white shadow-md">Salads</h3> 
+                <h3 className="text-3xl uppercase text-center text-white shadow-md">Salads</h3> 
             </div>
         </SwiperSlide>
         <SwiperSlide>
             <div>
                 <img src={img2} alt="" />
-                <h3 className="text-3xl uppercase -mt-16 text-center text-white shadow-md">Soups</h3>
+                <h3 className="text-3xl uppercase  text-center text-white shadow-md">Soups</h3>
             </div>
         </SwiperSlide>
         <SwiperSlide>
             <div>
                 <img src={img3} alt="" />
-                <h3 className="text-3xl uppercase -mt-16 text-center text-white shadow-md">pizzas</h3>
+                <h3 className="text-3xl uppercase text-center text-white shadow-md">pizzas</h3>
             </div>
         </SwiperSlide>
         <SwiperSlide>
             <div>
                 <img src={img4} alt="" />
-                <h3 className="text-3xl uppercase -mt-16 text-center text-white shadow-md">desserts</h3>
+                <h3 className="text-3xl uppercase text-center text-white shadow-md">desserts</h3>
             </div>
         </SwiperSlide>
         <SwiperSlide>
             <div>
                 <img src={img5} alt="" />
                 
-                <h3 className="text-3xl uppercase -mt-16 text-center text-white shadow-md">Salads</h3>
+                <h3 className="text-3xl uppercase  text-center text-white shadow-md">Salads</h3>
             </div>
         </SwiperSlide>
        

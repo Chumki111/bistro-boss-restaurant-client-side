@@ -30,12 +30,12 @@ const OurShop = () => {
             <Cover img={shopImage} title='OUR SHOP' subTitle='Would you like to try a dish?'></Cover>
             <div className="px-2 md:px-8 lg:px-14">
                 <Tabs default={false} defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                    <TabList className='font-bold uppercase text-[#BB8506] items-center justify-center flex my-16'>
-                        <Tab>Salad</Tab>
-                        <Tab>pizza</Tab>
-                        <Tab>soups</Tab>
-                        <Tab>desserts</Tab>
-                        <Tab>drinks</Tab>
+                    <TabList className='font-bold uppercase items-center text-[#BB8506] justify-center flex my-16'>
+                        <Tab className="border-none mr-4 cursor-pointer ">Salad</Tab>
+                        <Tab className="border-none mr-4 cursor-pointer">pizza</Tab>
+                        <Tab className="border-none mr-4 cursor-pointer">soups</Tab>
+                        <Tab className="border-none mr-4 cursor-pointer">desserts</Tab>
+                        <Tab className="border-none cursor-pointer">drinks</Tab>
                     </TabList>
                     <TabPanel>
                         <OrderTab items={saladItems}></OrderTab>
