@@ -23,6 +23,12 @@ const OrderSlider = () => {
 
             <div className='px-2 md:px-8 lg:px-14'>
             <Swiper
+
+mousewheel={{
+    forceToAxis: true,
+    sensitivity: 1,
+    releaseOnEdges: true,
+    }}
         slidesPerView={4}
         initialSlide={2}
         freeMode={true}

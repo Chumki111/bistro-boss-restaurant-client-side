@@ -1,9 +1,14 @@
 import {PropTypes } from "prop-types";
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
-export const AuthContext = createContext(null)
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+
+
+export const AuthContext = createContext(null);
+const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
+    const axiosPublic = useAxiosPublic()
     const [user,setUser] = useState(null);
     const [loading,setLoading] = useState(true);
 
@@ -12,7 +17,12 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth,email,password);
         
     }
+   
 
+     const createUserWithGoogle = () =>{
+        setLoading(true)
+        return signInWithPopup(auth,googleProvider)
+     }
     const logInUser =(email,password) =>{
         setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
@@ -23,13 +33,24 @@ const AuthProvider = ({children}) => {
 }
 
 const updateUserProfile = (name,photoURL) =>{
-    updateProfile(auth.currentUser, {
+  return  updateProfile(auth.currentUser, {
         displayName: name, photoURL: photoURL
       })
 }
     useEffect(() =>{
      const unSubscribe = onAuthStateChanged(auth,currentUser =>{
         setUser(currentUser);
+        if(currentUser){
+            const userInfo = {email : currentUser.email}
+              axiosPublic.post('/jwt',userInfo)
+              .then(res =>{
+                if(res.data.token){
+                    localStorage.setItem('access-token',res.data.token)
+                }
+              })
+        } else{
+           localStorage.removeItem('access-token')
+        }
         console.log('currentUser---->',currentUser);
         setLoading(false)
      })
@@ -37,9 +58,9 @@ const updateUserProfile = (name,photoURL) =>{
          return unSubscribe();
      }
         
-    },[])
+    },[axiosPublic])
     const authInfo = {
-      user,loading,createUser,logInUser,logOut,updateUserProfile
+      user,loading,createUser,logInUser,logOut,updateUserProfile,createUserWithGoogle
     }
     return (
         <AuthContext.Provider value={authInfo}>

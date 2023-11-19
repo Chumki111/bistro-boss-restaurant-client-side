@@ -9,15 +9,15 @@ import useCart from "../../Hooks/useCart";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart()
-  document.addEventListener('scroll', () => {
-    const header = document.querySelector('.navbar');
-    if (window.scrollY > 0) {
-      header.classList.add('scrolled')
+  // document.addEventListener('scroll', () => {
+  //   const header = document.querySelector('.navbar');
+  //   if (window.scrollY > 0) {
+  //     header.classList.add('scrolled')
 
-    } else {
-      header.classList.remove('scrolled')
-    }
-  })
+  //   } else {
+  //     header.classList.remove('scrolled')
+  //   }
+  // })
 
 
   const handleLogOut = () => {
@@ -58,7 +58,13 @@ const Navbar = () => {
 
 
     <NavLink
-      to="dashboardUser"
+      to="dashboard"
+      className="nav"
+    >
+      Dashboard
+    </NavLink>
+    <NavLink
+      to=""
       className="nav"
     >
       <button className="flex">
@@ -69,11 +75,10 @@ const Navbar = () => {
 
 
 
-
   </>
   return (
     <div>
-      <div className="navbar  scrolled rounded-md max-w-screen-xl  text-white">
+      <div className="navbar fixed rounded-md max-w-screen-xl  text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="navbar-end lg:hidden">
@@ -89,13 +94,12 @@ const Navbar = () => {
         <div className="navbar-end  hidden lg:flex">
           <ul className="menu menu-horizontal px-3">
             {navLinks}
-          </ul>
-        </div>
-        <div className="">
-          {
+
+            
+    {
             user ? <>
 
-              <button onClick={handleLogOut} className="cursor-pointer">LogOut</button>
+              <button onClick={handleLogOut} className="cursor-pointer ">LogOut</button>
               <div className="avatar mx-5">
                 <div className="w-10 rounded-full cursor-pointer">
                   <img src={user?.photoURL} />
@@ -120,6 +124,10 @@ const Navbar = () => {
             </div>
 
           )}
+          </ul>
+        </div>
+        <div className="">
+         
         </div>
       </div>
     </div>

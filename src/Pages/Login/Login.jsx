@@ -1,5 +1,3 @@
-
-import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import img from '../../assets/others/authentication2.png'
 import { useContext, useEffect, useState } from "react";
@@ -7,17 +5,18 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialAccount from "../../Shared/SocialAccount/SocialAccount";
 
 const Login = () => {
 
-	
+
 	const [disabled, setDisabled] = useState(true);
 	const { logInUser } = useContext(AuthContext);
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const from = location.state?.from?.pathname || '/';
-	
+
 
 
 
@@ -61,7 +60,7 @@ const Login = () => {
 					}
 				});
 
-				navigate(from,{replace:true})
+				navigate(from, { replace: true })
 
 			})
 			.catch(error => {
@@ -114,8 +113,8 @@ const Login = () => {
 											<LoadCanvasTemplate />
 										</label>
 
-										<input onBlur={handleCaptcha} type="text"  name='captcha' placeholder="Type here" className="input input-bordered" required />
-										
+										<input onBlur={handleCaptcha} type="text" name='captcha' placeholder="Type here" className="input input-bordered" required />
+
 									</div>
 									<button disabled={disabled} className="block w-full p-3 text-center rounded-sm dark:[#D1A054] cursor-pointer dark:bg-[#D1A054] text-white">Sign in</button>
 								</form>
@@ -124,17 +123,7 @@ const Login = () => {
 									<p className="px-3 text-sm dark:text-[#D1A054]">Login with social accounts</p>
 									<div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
 								</div>
-								<div className="flex justify-center space-x-4">
-									<button className="p-3 border border-[#444] rounded-full">
-										<FaGoogle></FaGoogle>
-									</button>
-									<button className="p-3 border border-[#444] rounded-full">
-										<FaFacebookF />
-									</button>
-									<button className="p-3 border border-[#444] rounded-full">
-										<FaGithub></FaGithub>
-									</button>
-								</div>
+								<SocialAccount />
 								<p className="text-lg text-center sm:px-6 dark:text-[#D1A054]">Don`t have an account?
 									<Link to='/signUp'>
 										<button className="underline font-medium dark:text-[#D1A054] ">Sign up</button>
