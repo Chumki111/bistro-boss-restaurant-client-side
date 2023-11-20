@@ -1,12 +1,15 @@
 import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { FaAlipay } from "react-icons/fa6";
 import useAdmin from "../Hooks/useAdmin";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 
+
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [showMenu, setShowMenu] = useState(false);
+    
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -27,7 +30,7 @@ const Dashboard = () => {
                         {
                             isAdmin ? <>
 
-                                <li><NavLink exact={true} className='uppercase' to='/dashboard'>
+                                <li><NavLink  className='uppercase' to='/dashboard/adminHome'>
                                     <FaHome className="text-2xl" />
                                     Admin Home</NavLink></li>
                                 <li><NavLink className='uppercase' to='/dashboard/addItems'>
@@ -48,6 +51,10 @@ const Dashboard = () => {
                                     <li><NavLink to='/dashboard/reservation'>
                                         <FaCalendar className="text-2xl" />
                                         Reservation</NavLink></li>
+                                    <li><NavLink to='/dashboard/paymentHistory'>
+                                    <FaAlipay className="text-2xl" />
+                                        
+                                        Payment History</NavLink></li>
                                     <li><NavLink to='/dashboard/myCart'><FaShoppingCart className="text-2xl" /> My Cart</NavLink></li>
                                     <li><NavLink to='/dashboard/addReview'>
                                         <FaAd className="text-2xl"></FaAd>
